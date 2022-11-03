@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { SetTable } from './cpmponents/Table/SetTable';
+// import { BasicTable } from './cpmponents/Table/Basic';
 import './index.css';
-import { SetTable } from './cpmponents/Basic'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
