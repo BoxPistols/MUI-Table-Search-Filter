@@ -1,4 +1,5 @@
 import SearchIcon from '@mui/icons-material/Search';
+import { Stack } from '@mui/material'
 import TextField from '@mui/material/TextField';
 import { ChangeEvent } from 'react';
 
@@ -29,7 +30,7 @@ export const Search = (props: {
   };
 
   return (
-    <div>
+    <Stack flexDirection={'row'} alignItems='center' mb={2}>
       <SearchIcon />
       <TextField
         id='standard-basic'
@@ -38,6 +39,6 @@ export const Search = (props: {
         value={searched}
         onChange={(event) => changeSearchedHandler(event)}
       />
-    </div>
+    </Stack>
   );
 };

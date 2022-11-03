@@ -1,4 +1,5 @@
-import * as React from 'react';
+// [Material-UI テーブル内の行を検索でフィルターする](https://qiita.com/quryu/items/f828d37855e87ccbc49b)
+import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,6 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Search } from './Search';
+import { Container } from '@mui/system';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -39,7 +41,7 @@ function createData(
   return { name, calories, fat, carbs, protein };
 }
 
-const rows = [
+const initialRows = [
   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
   createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
   createData('Eclair', 262, 16.0, 24, 6.0),
@@ -47,42 +49,60 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export const BasicTable = () => {
-  return (
-    <TableContainer component={Paper}>
-      <h1>Table Filter∂</h1>
-      {/* SearchData */}
-      <Search
-        searched={undefined}
-        initialRows={undefined}
-        setRows={undefined}
-        setSearched={undefined}
-      />
 
-      <Table sx={{ minWidth: 700 }} aria-label='customized table'>
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align='right'>Calories</StyledTableCell>
-            <StyledTableCell align='right'>Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align='right'>Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align='right'>Protein&nbsp;(g)</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component='th' scope='row'>
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align='right'>{row.calories}</StyledTableCell>
-              <StyledTableCell align='right'>{row.fat}</StyledTableCell>
-              <StyledTableCell align='right'>{row.carbs}</StyledTableCell>
-              <StyledTableCell align='right'>{row.protein}</StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+export const BasicTable = ({ rows, ...props }: { rows: any }) => {
+
+return (
+    <Container>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 700 }} aria-label='customized table'>
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>Dessert (100g serving)</StyledTableCell>
+              <StyledTableCell align='right'>Calories</StyledTableCell>
+              <StyledTableCell align='right'>Fat&nbsp;(g)</StyledTableCell>
+              <StyledTableCell align='right'>Carbs&nbsp;(g)</StyledTableCell>
+              <StyledTableCell align='right'>Protein&nbsp;(g)</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row: any, ...props: any) => {
+              return (
+                <StyledTableRow key={row.name}>
+                  <StyledTableCell component='th' scope='row'>
+                    {row.name}
+                  </StyledTableCell>
+                  <StyledTableCell align='right'>
+                    {row.calories}
+                  </StyledTableCell>
+                  <StyledTableCell align='right'>{row.fat}</StyledTableCell>
+                  <StyledTableCell align='right'>{row.carbs}</StyledTableCell>
+                  <StyledTableCell align='right'>{row.protein}</StyledTableCell>
+                </StyledTableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Container>
+  );
+};
+
+export const SetTable = () => {
+  // テーブルの行
+  const [rows, setRows] = useState([...initialRows]);
+  // 検索バーに入力された文字
+  const [searched, setSearched] = useState('');
+
+  return (
+    <div className='App'>
+      <Search
+        initialRows={initialRows}
+        searched={searched}
+        setRows={setRows}
+        setSearched={setSearched}
+      />
+      <BasicTable rows={rows} />
+    </div>
   );
 };
