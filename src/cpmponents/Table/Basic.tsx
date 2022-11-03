@@ -9,6 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Search } from './Search';
+import { Container } from '@mui/material';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -89,14 +90,13 @@ export const SetTable = () => {
   const [searched, setSearched] = useState('');
 
   return (
-    <div className='App'>
+    <Container>
       <Search
         initialRows={initialRows}
         searched={searched}
         setRows={setRows}
         setSearched={setSearched}
       />
-      <BasicTable rows={rows} />
-    </div>
+    </Container>
   );
 };
