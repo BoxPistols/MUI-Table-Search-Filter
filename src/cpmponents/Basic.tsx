@@ -1,3 +1,4 @@
+// [Material-UI テーブル内の行を検索でフィルターする](https://qiita.com/quryu/items/f828d37855e87ccbc49b)
 import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -48,7 +49,7 @@ const initialRows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export function BasicTable({ rows }) {
+export const BasicTable = ({ rows, ...props }: { rows: any }) => {
   return (
     <Container>
       <TableContainer component={Paper}>
@@ -63,7 +64,7 @@ export function BasicTable({ rows }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => {
+            {rows.map((row: any, ...props: any) => {
               return (
                 <StyledTableRow key={row.name}>
                   <StyledTableCell component='th' scope='row'>
@@ -83,7 +84,7 @@ export function BasicTable({ rows }) {
       </TableContainer>
     </Container>
   );
-}
+};
 
 export const SetTable = () => {
   // テーブルの行

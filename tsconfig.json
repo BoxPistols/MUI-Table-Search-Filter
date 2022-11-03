@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "strict": false,
+    "strict": true,
+    "noImplicitAny": true,
     "target": "es5",
     "lib": [
       "dom",
