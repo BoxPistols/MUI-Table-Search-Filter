@@ -1,7 +1,9 @@
 // データを持ち、表示させるプレゼンテーショナルコンポーネント
 import { useState } from 'react';
+import { Container } from '@mui/system';
 import { BasicTable } from './Basic';
 import { Search } from './Search';
+
 /**
  * searched?: any;
  * initialRows?: any;
@@ -38,18 +40,21 @@ export const SetTable = () => {
   const [searchedData, setSearchedData] = useState('');
 
   return (
-    <>
+    <Container>
       {/*　検索とテーブルのデータ共有 */}
       <Search
         initialRows={initialRowsData} // テーブルデータ
+        searched={searchedData} // 入力テキスト
         setRows={setRowsData} // 検索対象
-        searched={searchedData} // 検索結果
         setSearched={setSearchedData} // トリガー
         id='1'
         label='検索'
       />
       {/* テーブル行の設定 */}
-      <BasicTable rows={rowsData} />
-    </>
+      {rowsData.length < 1 ? 'なし' : <BasicTable rows={rowsData} />}
+      {/* 結果件数 */}
+      {/* rowsData.length :{rowsData.length} */}
+      {/* {rowsData.length < 1 ? 'なし' : ''} */}
+    </Container>
   );
 };
