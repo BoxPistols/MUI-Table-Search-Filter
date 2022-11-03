@@ -1,5 +1,5 @@
+// テーブルUI
 // [Material-UI テーブル内の行を検索でフィルターする](https://qiita.com/quryu/items/f828d37855e87ccbc49b)
-import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,7 +8,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Search } from './Search';
 import { Container } from '@mui/system';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -31,25 +30,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
-) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const initialRows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
-
+// 配列でデータを渡す
 export const BasicTable = ({ rows, ...props }: { rows: any }) => {
 
 return (
@@ -85,24 +66,5 @@ return (
         </Table>
       </TableContainer>
     </Container>
-  );
-};
-
-export const SetTable = () => {
-  // テーブルの行
-  const [rows, setRows] = useState([...initialRows]);
-  // 検索バーに入力された文字
-  const [searched, setSearched] = useState('');
-
-  return (
-    <div className='App'>
-      <Search
-        initialRows={initialRows}
-        searched={searched}
-        setRows={setRows}
-        setSearched={setSearched}
-      />
-      <BasicTable rows={rows} />
-    </div>
   );
 };
