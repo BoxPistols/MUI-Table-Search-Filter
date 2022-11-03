@@ -9,6 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Search } from './Search';
+import { Container } from '@mui/system';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -50,7 +51,6 @@ const initialRows = [
 
 export const BasicTable = ({ rows, ...props }: { rows: any }) => {
   return (
-    // <Container>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label='customized table'>
         <TableHead>
