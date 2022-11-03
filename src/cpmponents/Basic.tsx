@@ -49,8 +49,10 @@ const initialRows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
+
 export const BasicTable = ({ rows, ...props }: { rows: any }) => {
-  return (
+
+return (
     <Container>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label='customized table'>
