@@ -1,15 +1,10 @@
 // [Material-UI テーブル内の行を検索でフィルターする](https://qiita.com/quryu/items/f828d37855e87ccbc49b)
-import { useState } from 'react';
 import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { Search } from './Search';
-import { Container } from '@mui/system';
+
+import { CustomTable, CustomTableContainer, CustomTableHeader } from './';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -31,29 +26,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
-) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const initialRows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
-export const BasicTable = ({ rows, ...props }: { rows: any }) => {
+export const BasicTable = ({ rows }: { rows: any }) => {
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label='customized table'>
-        <TableHead>
+    <CustomTableContainer>
+      <CustomTable sx={{ minWidth: 700 }} aria-label='customized table'>
+        <CustomTableHeader>
           <TableRow>
             <StyledTableCell>Dessert (100g serving)</StyledTableCell>
             <StyledTableCell align='right'>Calories</StyledTableCell>
@@ -61,7 +38,7 @@ export const BasicTable = ({ rows, ...props }: { rows: any }) => {
             <StyledTableCell align='right'>Carbs&nbsp;(g)</StyledTableCell>
             <StyledTableCell align='right'>Protein&nbsp;(g)</StyledTableCell>
           </TableRow>
-        </TableHead>
+        </CustomTableHeader>
         <TableBody>
           {rows.map((row: any, ...props: any) => {
             return (
@@ -77,26 +54,7 @@ export const BasicTable = ({ rows, ...props }: { rows: any }) => {
             );
           })}
         </TableBody>
-      </Table>
-    </TableContainer>
-  );
-};
-
-export const SetTable = () => {
-  // テーブルの行
-  const [rows, setRows] = useState([...initialRows]);
-  // 検索バーに入力された文字
-  const [searched, setSearched] = useState('');
-
-  return (
-    <div className='App'>
-      <Search
-        initialRows={initialRows}
-        searched={searched}
-        setRows={setRows}
-        setSearched={setSearched}
-      />
-      <BasicTable rows={rows} />
-    </div>
+      </CustomTable>
+    </CustomTableContainer>
   );
 };

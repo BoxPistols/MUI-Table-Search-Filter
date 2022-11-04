@@ -1,0 +1,24 @@
+{
+	"files": [
+		{
+			"path": "src/cpmponents/Table/Basic.tsx",
+			"bookmarks": [
+				{
+					"line": 30,
+					"column": 0,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "src/theme/schemes/CustomTheme.ts",
+			"bookmarks": [
+				{
+					"line": 373,
+					"column": 21,
+					"label": ""
+				}
+			]
+		}
+	]
+}

@@ -2,6 +2,7 @@
 import { ChangeEvent } from 'react';
 import { Stack, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import React from 'react';
 
 // 検索バーのコンポーネント
 export const Search = (props: {
@@ -31,7 +32,12 @@ export const Search = (props: {
   };
 
   return (
-    <Stack flexDirection={'row'} alignItems='center' mb={2}>
+    <Stack
+      flexDirection={'row'}
+      alignItems='center'
+      // mb={2}
+      sx={{ p: 2, maxWidth: 800 }}
+    >
       <SearchIcon />
       <TextField
         id={id}
@@ -39,6 +45,7 @@ export const Search = (props: {
         value={searched}
         onChange={(event) => changeSearchedHandler(event)}
         variant='outlined'
+        sx={{ width: '100%' }}
       />
     </Stack>
   );

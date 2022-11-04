@@ -19,7 +19,14 @@
     "@emotion/styled": "11.10.5",
     "@mui/icons-material": "5.10.9",
     "@mui/material": "5.10.12",
-    "@mui/utils": "5.10.9"
+    "@mui/utils": "5.10.9",
+    "@babel/core": "^7.18.5",
+    "@emotion/cache": "11.9.3",
+    "@emotion/server": "11.4.0",
+    "@mui/core": "^5.0.0-alpha.54",
+    "@mui/lab": "5.0.0-alpha.57",
+    "@mui/styles": "5.2.1",
+    "@mui/x-date-pickers": "5.0.0-alpha.7"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,8 +1,9 @@
 // データを持ち、表示させるプレゼンテーショナルコンポーネント
-import { Container } from '@mui/material';
 import { useState } from 'react';
 import { BasicTable } from './Basic';
 import { Search } from './Search';
+import { CustomTableContainer } from './';
+
 /**
  * searched?: any;
  * initialRows?: any;
@@ -39,8 +40,9 @@ export const SetTable = () => {
   const [searchedData, setSearchedData] = useState('');
 
   return (
-    <Container>
+    <>
       {/*　検索とテーブルのデータ共有 */}
+      <CustomTableContainer sx={{ pt: 1, margin: 'auto', maxWidth: 800 }}>
       <Search
         initialRows={initialRowsData} // テーブルデータ
         setRows={setRowsData} // 検索対象
@@ -49,11 +51,12 @@ export const SetTable = () => {
         id='1'
         label='検索'
       />
-      {/* テーブル行の設定 */}
-      {/* <BasicTable rows={rowsData} /> */}
-      {rowsData.length < 1 ? 'なし' : <BasicTable rows={rowsData} />}
-      {/* 結果件数 */}
-      {}rowsData.length :{rowsData.length}
-    </Container>
+        {/* テーブル行の設定 */}
+        {/* <BasicTable rows={rowsData} /> */}
+        {rowsData.length < 1 ? 'なし' : <BasicTable rows={rowsData} />}
+        {/* 結果件数 */}
+        {}rowsData.length :{rowsData.length}
+      </CustomTableContainer>
+    </>
   );
 };
