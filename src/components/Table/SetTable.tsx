@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { BasicTable } from './Basic';
 import { Search } from './Search';
-import { CustomTableContainer } from './';
+import { CustomTableContainer } from '.';
 
 /**
  * searched?: any;

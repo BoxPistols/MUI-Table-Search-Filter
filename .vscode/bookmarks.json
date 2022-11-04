@@ -1,7 +1,7 @@
 {
 	"files": [
 		{
-			"path": "src/cpmponents/Table/Basic.tsx",
+			"path": "src/components/Table/Basic.tsx",
 			"bookmarks": [
 				{
 					"line": 30,
@@ -16,6 +16,16 @@
 				{
 					"line": 373,
 					"column": 21,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "src/components/Box/AccordionWrap.tsx",
+			"bookmarks": [
+				{
+					"line": 147,
+					"column": 14,
 					"label": ""
 				}
 			]

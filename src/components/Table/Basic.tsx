@@ -4,7 +4,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 
-import { CustomTable, CustomTableContainer, CustomTableHeader } from './';
+import { CustomTable, CustomTableContainer, CustomTableHeader } from '.';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
