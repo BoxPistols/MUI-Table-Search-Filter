@@ -1,8 +1,8 @@
 import { Divider, ThemeProvider } from '@mui/material';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { OnTableFilter } from './cpmponents/Table/OnTableFilter';
-import { SetTable } from './cpmponents/Table/SetTable';
+import { OnTableFilter } from './components/Table/OnTableFilter';
+import { SetTable } from './components/Table/SetTable';
 import { CustomTheme } from './theme/schemes/CustomTheme';
 
 // import { BasicTable } from './cpmponents/Table/Basic';

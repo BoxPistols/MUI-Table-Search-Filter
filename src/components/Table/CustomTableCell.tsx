@@ -3,17 +3,17 @@ import {
   TableCell,
   tableCellClasses,
   TableCellProps,
-} from '@mui/material'
-import { ReactNode } from 'react'
+} from '@mui/material';
+import { ReactNode } from 'react';
 
-type ElementProps = TableCellProps
+type ElementProps = TableCellProps;
 
 type Props = {
-  children: ReactNode
-  minWidthValue?: number
-  maxWidthValue?: number
-  noWrap?: boolean
-}
+  children: ReactNode;
+  minWidthValue?: number;
+  maxWidthValue?: number;
+  noWrap?: boolean;
+};
 
 // ----- Design -----
 // INFO: https://mui.com/material-ui/react-table/#basic-table
@@ -28,7 +28,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontSize: 14,
     borderColor: theme.colors.alpha.black[5],
   },
-}))
+}));
 
 // デフォルトのTableCell
 export const CustomTableCell = ({
@@ -51,8 +51,8 @@ export const CustomTableCell = ({
     >
       {children}
     </StyledTableCell>
-  )
-}
+  );
+};
 // 編集機能がある時のTableCell
 const StyledTableCellAction = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -68,7 +68,7 @@ const StyledTableCellAction = styled(TableCell)(({ theme }) => ({
     right: 0,
     borderColor: theme.colors.alpha.black[5],
   },
-}))
+}));
 
 // アクションがある場合は見出しのmapとは別に並列で設置する
 export const CustomTableCellAction = ({
@@ -76,8 +76,8 @@ export const CustomTableCellAction = ({
   ...props
 }: Props & ElementProps) => {
   return (
-    <StyledTableCellAction align="center" sx={{ top: 0 }} {...props}>
+    <StyledTableCellAction align='center' sx={{ top: 0 }} {...props}>
       {children}
     </StyledTableCellAction>
-  )
-}
+  );
+};

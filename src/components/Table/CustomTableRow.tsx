@@ -26,5 +26,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export const CustomTableRow = ({ children }: Props & ElementProps) => {
-  return <StyledTableRow>{children}</StyledTableRow>;
+  return <StyledTableRow>
+    {children}
+    </StyledTableRow>;
 };
