@@ -1,7 +1,5 @@
 // データを持ち、表示させるプレゼンテーショナルコンポーネント
 import { ChangeEvent, useState } from 'react';
-import { FilterTable } from './FilterTable';
-import { Search } from './Search';
 import {
   CustomTableContainer,
   CustomTable,
@@ -9,7 +7,8 @@ import {
   CustomTableCell,
   CustomTableRow,
 } from '.';
-import { Box, TableBody, TablePagination } from '@mui/material';
+// import { Box, TableBody, TablePagination } from '@mui/material';
+import { Box, TableBody, TextField } from '@mui/material';
 
 // TODO: Add データモックアップ
 import Data from '../../content/mock/MockData/person.json'; // 検証用ダミーjson ユーザーデータ例
@@ -82,47 +81,69 @@ const ResultNone = () => {
   );
 };
 
+// PropType = {
+//   searched?: any;
+//   initialRows?: any;
+//   setRows?: any;
+//   setSearched?: any;
+//   id?: string;
+//   label?: string;
+// }
+
 export const OnTableFilterMock = () => {
   // テーブルの行
   const [rowsData, setRowsData] = useState([...mockDatas]);
   // 検索バーに入力された文字
   const [searchedData, setSearchedData] = useState('');
 
-  // PageNation
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const handleChangePage = (_event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
-  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
-  // ----------------------------------------------------------------
-  // FIXME: 入れる テーブル全体の高さToggle
-  // const [maxheight, setMaxheight] = useState(false);
-  // const handleChangeMaxheight = (event: ChangeEvent<HTMLInputElement>) => {
-  //   setMaxheight(event.target.checked);
+  // // PageNation
+  // const [page, setPage] = useState(0);
+  // const [rowsPerPage, setRowsPerPage] = useState(10);
+  // const handleChangePage = (_event: unknown, newPage: number) => {
+  //   setPage(newPage);
+  // };
+  // const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setRowsPerPage(+event.target.value);
+  //   setPage(0);
   // };
 
-  // CustomCellの初期値とは別に、このページ内で最小幅/最大幅の共通初期値を指定し直したい時は新たに設置し、style内で反映させます
-  const minWidthValue = 120;
-  const maxWidthValue = 240;
+  // 検索文字によってテーブルの行をフィルター
+  const requestSearch = (searchedVal: string) => {
+    const filteredRows = mockDatas.filter((row: { mail: string }) => {
+      return row.mail.toLowerCase().includes(searchedVal.toLowerCase());
+    });
+    setRowsData(filteredRows);
+  };
+
+  // 検索バーの文字が変化したときにフィルターを実行する関数
+  const changeSearchedHandler = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setSearchedData(event.target.value);
+    requestSearch(event.target.value);
+  };
 
   return (
     <>
-      {/*　検索とテーブルのデータ共有 */}
-
-      {/* Add テーブルレイアウト */}
       {/* <CustomTableContainer maxHeightValue={maxheight ? '100%' : 480}> */}
       <CustomTableContainer>
-        <Search
+        {/* <Search
           initialRows={columns} // テーブルデータ
           setRows={setRowsData} // 検索対象
           searched={searchedData} // 検索結果
           setSearched={setSearchedData} // トリガー
           id='2'
           label='検索'
+        /> */}
+        <TextField
+          id=''
+          label=''
+          value={searchedData}
+          onChange={(event) => {
+            return changeSearchedHandler(event);
+          }}
+          variant='outlined'
+          sx={{ width: '100%' }}
         />
         <CustomTable aria-label='table-aria-name'>
           {/* Table Heading */}
@@ -140,7 +161,7 @@ export const OnTableFilterMock = () => {
           ) : (
             <TableBody>
               {mockDatas
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((data: any) => (
                   <CustomTableRow key={data.id}>
                     {columns.map((column) => {
@@ -157,7 +178,7 @@ export const OnTableFilterMock = () => {
           )}
         </CustomTable>
       </CustomTableContainer>
-      <Box mb={4} pr={2}>
+      {/* <Box mb={4} pr={2}>
         <TablePagination
           rowsPerPageOptions={[10, 30, 50, 100]}
           component='div'
@@ -168,7 +189,7 @@ export const OnTableFilterMock = () => {
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
-      </Box>
+      </Box> */}
     </>
   );
 };
